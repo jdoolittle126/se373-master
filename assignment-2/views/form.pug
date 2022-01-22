@@ -1,0 +1,18 @@
+include _head
+div.section
+    form(action="/results", method="post")
+        div.field
+            label.label Name
+            div.control
+                input.input(type="text", placeholder="Jonathan Doolittle", name="name")
+        div.field
+            label.label Email
+            div.control
+                input.input(type="email", placeholder="sample@email.com", name="email")
+        div.field
+            label.label Comments
+            div.control
+                textarea.textarea(placeholder="Your comment here!", name="comment")
+        div.field
+            div.control
+                button.button.is-link Submit

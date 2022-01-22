@@ -1,0 +1,23 @@
+nav.navbar(role='navigation' aria-label='main navigation').is-success
+    .navbar-brand
+        a.navbar-item(href="/")
+            div.has-text-centered
+                p.has-text-dark.title Assignment #2
+                p.subtitle Jonathan Doolittle
+        a.navbar-burger(role='button' aria-label='menu' aria-expanded='false' data-target='assignmentNav')
+            span(aria-hidden='true')
+            span(aria-hidden='true')
+            span(aria-hidden='true')
+    #assignmentNav.navbar-menu
+        .navbar-start
+            a.navbar-item(href="/")
+                | Home
+            a.navbar-item(href="/about")
+                | About
+            a.navbar-item(href="/form")
+                | Form
+        .navbar-end
+            .navbar-item
+                .buttons
+                    a.button.is-light(href="https://github.com/jdoolittle126/se373-master")
+                        | GitHub

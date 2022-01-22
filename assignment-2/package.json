@@ -1,0 +1,20 @@
+{
+  "name": "assignment-2",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "gulp"
+  },
+  "author": "Jonathan Doolittle",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.17.2",
+    "pug": "^3.0.2"
+  },
+  "devDependencies": {
+    "browser-sync": "^2.27.7",
+    "gulp": "^4.0.2",
+    "gulp-nodemon": "^2.5.0"
+  }
+}
