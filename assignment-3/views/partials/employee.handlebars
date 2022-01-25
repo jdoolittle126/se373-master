@@ -1,0 +1,20 @@
+<div class="card">
+    <header class="card-header">
+        <p class="card-header-title">{{last}}, {{first}}</p>
+    </header>
+    <div class="card-content">
+        <div class="content">
+            <p><strong>{{first}} {{last}}</strong> has been an employee for <i>{{daysSince start}} days</i> (started {{start}})</p>
+            <p><strong>Position:</strong> {{job}}</p>
+            <p><strong>Department:</strong> {{department}}</p>
+            <p><strong>Salary:</strong> {{formatMoney salary}}</p>
+        </div>
+    </div>
+    <footer class="card-footer">
+        <form action="/delete/{{_id}}" method="delete">
+            <button class="button">DELETE</button>
+        </form>
+        <a href="" class="card-footer-item">Update</a>
+        <a href="/delete/{{_id}}" class="card-footer-item">Delete</a>
+    </footer>
+</div>
