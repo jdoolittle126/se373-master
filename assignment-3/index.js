@@ -7,14 +7,30 @@ const formatter = new Intl.NumberFormat('en-US', {
 });
 const hbs = require('express-handlebars').create({
     helpers: {
+        /**
+         * HBS helper to render a dropdown with an item selected
+         * @param selected The value of the item that should be selected
+         * @param options All of the available options
+         * @return {*} The corrected HTML dropdown
+         */
         select: (selected, options) => {
             return options.fn(this).replace(
                 new RegExp(' value=\"' + selected + '\"'),
                 '$& selected="selected"');
         },
+        /**
+         * Returns the days since a given date
+         * @param date The date to count from
+         * @return {number} The number of days since the given date
+         */
         daysSince: (date) => {
             return Math.floor((new Date().getTime() - new Date(date).getTime()) / (1000 * 3600 * 24));
         },
+        /**
+         * Formats the given value as USD
+         * @param value The numeric value
+         * @return {string} The value as formatted USD ($__.__)
+         */
         formatMoney: (value) => {
             return formatter.format(value);
         }
@@ -32,16 +48,14 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use('/', routes);
 
-
+// Wait for the DB to connect, then start the server
 dbo.connect((error) => {
-
     if(error) {
         console.log(`Error connecting to database: ${error}`);
         return;
     }
-
-    app.listen(port, function() {
-        console.log(`We are up and running on port ${port}!`)
+    app.listen(port, () => {
+        console.log(`We are up and running on port ${port}!`);
     });
 });
 

@@ -1,5 +1,8 @@
+if (process.env.NODE_ENV !== 'production') {
+    require('dotenv').config();
+}
 const { MongoClient } = require('mongodb');
-const uri = "mongodb+srv://assignment3:ChZ&R4B9&26^iu$@cluster0.ks9kg.mongodb.net/myFirstDatabase?retryWrites=true&w=majority";
+const uri = process.env.MDB_CONN;
 const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true });
 let connection;
 

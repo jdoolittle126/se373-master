@@ -2,6 +2,12 @@ const gulp = require('gulp');
 const browserSync = require('browser-sync');
 const nodemon = require('gulp-nodemon');
 
+/*
+    My gulp task(s) for automatically refreshing the browser
+    when any views are changed, and restarting the server
+    when serverside code is changed.
+ */
+
 gulp.task('nodemon', (callBack) => {
     let running = false;
     return nodemon({
@@ -21,7 +27,7 @@ gulp.task('nodemon', (callBack) => {
 gulp.task('browser-sync', gulp.series('nodemon', () => {
     browserSync.init({
         proxy: "http://localhost:3000",
-        files: ['views/*.*'],
+        files: ['views/**/*'],
         port: 5000,
         notify: true
     });
