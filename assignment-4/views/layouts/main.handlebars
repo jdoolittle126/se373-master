@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Assignment #4</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/uikit@3.10.1/dist/css/uikit.min.css" />
+    <script src="https://cdn.jsdelivr.net/npm/uikit@3.10.1/dist/js/uikit.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/uikit@3.10.1/dist/js/uikit-icons.min.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <style>
+        .still, .rotate, .shrink {
+            color: red;
+            display: inline-block;
+            font-size: 60px;
+            padding: 1rem;
+            text-shadow: 1px 1px 2px black;
+        }
+
+        .rotate {
+            animation: rotate 1s infinite ease;
+        }
+
+        .shrink {
+            animation: shrink 1s infinite ease;
+        }
+
+        @keyframes rotate {
+            0% {
+                transform: rotateZ(-30deg);
+            }
+            50% {
+                transform: rotateZ(30deg);
+            }
+            100% {
+                transform: rotateZ(0);
+            }
+        }
+
+        @keyframes shrink {
+            0% {
+                transform: scale(0.8);
+            }
+            50% {
+                transform: scale(1.2);
+            }
+            100% {
+                transform: scale(1);
+            }
+        }
+    </style>
+
+</head>
+
+<body>
+    {{>navigation}}
+
+    <div class="uk-container uk-container-center uk-margin-top uk-margin-large-bottom">
+        {{{body}}}
+    </div>
+</body>
+
+</html>
