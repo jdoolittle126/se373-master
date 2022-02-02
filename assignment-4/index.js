@@ -16,7 +16,9 @@ const hbs = require('express-handlebars').create({
                 '$& selected="selected"');
         },
         /**
-         *
+         * Simple block helper for checking if a value
+         * is equal to another value. If true, the block is
+         * rendered
          * @param value1
          * @param value2
          * @param options
@@ -26,10 +28,11 @@ const hbs = require('express-handlebars').create({
             return (value1 == value2) ? options.fn(this) : options.inverse(this);
         },
         /**
-         *
+         * Generates a grid filled with random colors with
+         * the given length and width.
          * @param length
          * @param width
-         * @returns {string}
+         * @returns {string} An HTML table
          */
         buildGrid: (length, width) => {
 
