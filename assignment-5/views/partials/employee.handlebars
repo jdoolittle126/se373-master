@@ -1,0 +1,23 @@
+<div class="tile is-child box" style="margin: 0.25em!important; min-width: 25%;">
+    <div class="is-flex is-flex-direction-column" style="height:100%">
+        <p class="subtitle is-flex-grow-1">{{last}}, {{first}}</p>
+        <div class="card-content is-flex-grow-3">
+            <div class="content">
+                <p><strong>{{first}} {{last}}</strong> has been an employee for <i>{{daysSince start}} days</i> (started {{start}})</p>
+                <p><strong>Position:</strong> {{job}}</p>
+                <p><strong>Department:</strong> {{department}}</p>
+                <p><strong>Salary:</strong> {{formatMoney salary}}</p>
+            </div>
+        </div>
+        <footer class="level is-flex-grow-1">
+            <div class="level-item">
+                <form action="/delete/{{_id}}" method="post">
+                    <button class="button is-danger" type="submit">Delete</button>
+                </form>
+            </div>
+            <div class="level-item">
+                <a class="button is-info" href="/update/{{_id}}">Update</a>
+            </div>
+        </footer>
+    </div>
+</div>

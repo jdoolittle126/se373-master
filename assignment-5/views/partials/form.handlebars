@@ -1,0 +1,58 @@
+<div style="padding: 0.75rem;">
+    <form action="{{action}}" method="post">
+        <div class="field">
+            <label class="label" for="first">First Name</label>
+            <div class="control">
+                <input class="input" type="text" placeholder="Jonathan" name="first" value="{{first}}"/>
+            </div>
+        </div>
+
+        <div class="field">
+            <label class="label" for="last">Last Name</label>
+            <div class="control">
+                <input class="input" type="text" placeholder="Doolittle" name="last" value="{{last}}"/>
+            </div>
+        </div>
+
+        <div class="field">
+            <label class="label">Department</label>
+            <div class="select">
+                <select name="department">
+                    {{#select department}}
+                        <option value="Information Technology">Information Technology</option>
+                        <option value="Administration">Administration</option>
+                        <option value="Shipping">Shipping</option>
+                    {{/select}}
+                </select>
+            </div>
+        </div>
+
+        <div class="field">
+            <label class="label">Start Date</label>
+            <div class="control">
+                <input class="input" type="date" value="{{start}}" placeholder="Doolittle" name="start"/>
+            </div>
+        </div>
+
+        <div class="field">
+            <label class="label">Job Title</label>
+            <div class="control">
+                <input class="input" type="text"  value="{{job}}" placeholder="Janitor" name="job"/>
+            </div>
+        </div>
+
+        <div class="field">
+            <label class="label">Salary</label>
+            <div class="control">
+                <input class="input" type="number" value="{{salary}}" placeholder="100000" name="salary"/>
+            </div>
+        </div>
+
+        <div class="field">
+            <div class="control">
+                <button class="button is-link">Submit</button>
+            </div>
+        </div>
+    </form>
+</div>
+

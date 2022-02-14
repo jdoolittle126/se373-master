@@ -7,9 +7,6 @@ const {ObjectId} = require("mongodb");
 const routeEmployees = router.route('employees');
 
 routeEmployees.get(((req, res) => {
-
-
-
     res.json()
 }));
 
