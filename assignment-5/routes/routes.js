@@ -14,15 +14,16 @@ routeCreate.get(((req, res) => {
     res.render('create', {action: '/create'});
 }));
 
-routeCreate.post( (req, res) => {
+routeCreate.post( async (req, res) => {
     // Add an employee to the database using the form data
-    EmployeeController.createEmployee(req.body, (error) => {
-        if (error) {
-            res.render('error', error);
-        } else {
-            res.redirect('view');
-        }
-    });
+    let employee = await EmployeeController.createEmployee(req.body);
+
+    if (employee) {
+        res.redirect('view');
+    } else {
+        res.render('error');
+    }
+
 });
 
 /////////////////////
@@ -35,13 +36,13 @@ routeDelete.post(async (req, res) => {
     const search = { _id: ObjectId(req.params.id) };
 
     // Delete the employee from the database
-    EmployeeController.deleteEmployee(search, ((error, result) => {
-        if (error) {
-            res.render('error', error);
-        } else {
-            res.redirect('../view');
-        }
-    }));
+    let employee = await EmployeeController.deleteEmployee(search);
+
+    if (employee) {
+        res.redirect('../view');
+    } else {
+        res.render('error');
+    }
 });
 
 /////////////////////
@@ -54,21 +55,20 @@ routeUpdate.get(async (req, res) => {
     const search = { _id: ObjectId(req.params.id) };
 
     // Get the employee from the database
+    let employee = await EmployeeController.findEmployeeById(search);
 
-    EmployeeController.findEmployeeById(search, (result) => {
+    if (employee) {
         // Set the form action to post to update
-        result.action = `/update/${req.params.id}`;
+        employee.action = `/update/${req.params.id}`;
         // Load the known employee information into the form
-        res.render('update', result);
-    });
+        res.render('update', employee);
+    }
 });
 
 routeUpdate.post(async (req, res) => {
     // Update the employee based on the given data
     const search = { _id: ObjectId(req.params.id) };
-    EmployeeController.updateEmployee(search, req.body, () => {
-        res.redirect('../view');
-    });
+    EmployeeController.updateEmployee(search, req.body).then(res.redirect('../view'));
 });
 
 /////////////////////
@@ -81,27 +81,33 @@ routeView.get(async (req, res) => {
     // Although this would be better as a lazy-load, for the sake of the
     // assignment it is done synchronously
 
-    EmployeeController.getAllEmployees((employees) => {
-        if (employees) {
-            res.render('view', {employees: employees});
-        } else {
-            res.render('error');
-        }
-    });
+    let employees = await EmployeeController.getAllEmployees();
+    if (employees) {
+        res.render('view', {employees: employees});
+    } else {
+        res.render('error');
+    }
 });
 
 /////////////////////
 /// MISC ROUTES
 /////////////////////
-router.route('/error').get(((req, res) => {
+router.route('/error').get((req, res) => {
     // Route for generic errors in case a static URL is needed
     res.render('error');
-}));
+});
 
-router.route('*').get(((req, res) => {
+router.route('/query').get((req, res) => {
+    res.render('query');
+});
+
+router.route('*').get((req, res) => {
     // Unknown routes are brought to the home page
     res.redirect('create');
-}));
+});
+
+
+
 
 // Expose the router to the application
 module.exports = router;

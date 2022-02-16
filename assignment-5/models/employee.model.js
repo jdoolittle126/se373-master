@@ -11,8 +11,10 @@ const employeeSchema = new mongoose.Schema({
         required:true,
         min:0
     }
-})
+}, {
+    strictQuery: false
+});
 
-let Employee = mongoose.model('Employee', employeeSchema)
+let Employee = mongoose.model('Employee', employeeSchema);
 
 module.exports = Employee

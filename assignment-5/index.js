@@ -1,6 +1,6 @@
 const express = require('express');
 const routes = require('./routes/routes');
-//const api = require('./routes/api');
+const api = require('./routes/api/employees');
 const bodyParser = require('body-parser');
 const formatter = new Intl.NumberFormat('en-US', {
     style: 'currency',
@@ -48,8 +48,9 @@ app.set('views', './views');
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
+app.use('/api/v1/', api);
 app.use('/', routes);
-//app.use('/api/v1', api);
+
 
 // Wait for the DB to connect, then start the server
 dbo.connect((error) => {
